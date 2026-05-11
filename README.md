@@ -18,6 +18,12 @@ This project is an excellent showcase of the four pillars of OOP:
 * **Encapsulation:** Class variables are kept `private` to restrict direct access, using public getter and setter methods to interact with the data safely (including age validation logic).
 * **Polymorphism:** The main execution utilizes a `Person[]` array to store `Patient` objects. When iterating through the array, the overridden `displayDetails()` method resolves dynamically at runtime to show patient-specific formatting.
 
+## 👥 Task Breakdown & Contributions
+
+* **Task 1: Core Class Hierarchy & OOP Implementation**
+   * **Completed by:** Nur-amin
+   * **Description:** Design and implement the core class hierarchy of the chosen management system, clearly demonstrating all four Object-Oriented Programming (OOP) principles, Encapsulation, Abstraction, Inheritance, and Polymorphism through the structure and behaviour of the classes.
+
 ## 📁 Project Structure
 
 * `Main.java` - The entry point containing sample data and the hospital database array logic.
