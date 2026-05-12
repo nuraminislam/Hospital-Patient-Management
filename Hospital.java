@@ -1,9 +1,9 @@
 public class Hospital {
-    public String name;
-    public String branch;
+    public String hospitalName;
+    public String hospitalBranch;
 
     public Hospital(String name, String branch) {
-        this.name = name;
-        this.branch = branch;
+        this.hospitalBranch = name;
+        this.hospitalBranch = branch;
     }
 }
