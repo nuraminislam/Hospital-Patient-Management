@@ -27,11 +27,11 @@ public class Main {
         Staff s2 = new Staff("Rahman Hossain", 35, "01822223333", 202, "Receptionist", 20000);
         Staff s3 = new Staff("Sadia Islam", 32, "01933334444",203, "Lab Technician", 30000);
         Staff s4 = new Staff("Karim Uddin", 40, "01744445555",204, "Pharmacist", 28000);
-        Staff s5 = new Staff("Nusrat Jahan", 28, "01655556666",205, "Ward Boy", 15000);
-        Staff s6 = new Staff("Nusrat Jahan", 28, "01655556666",205, "Ward Boy", 15000);
-        Staff s7 = new Staff("Nusrat Jahan", 28, "01655556666",205, "Ward Boy", 15000);
-        Staff s8 = new Staff("Nusrat Jahan", 28, "01655556666",205, "Ward Boy", 15000);
-        Staff s9 = new Staff("Nusrat Jahan", 28, "01655556666",205, "Ward Boy", 15000);
+        Staff s5 = new Staff("Meheraj Hossain", 29, "01655556666",205, "Ward Boy", 15000);
+        Staff s6 = new Staff("Nusrat Jahan", 28, "01655556666",206, "Ward Boy", 15000);
+        Staff s7 = new Staff("Nusrat Jahan", 28, "01655556666",207, "Ward Boy", 15000);
+        Staff s8 = new Staff("Nusrat Jahan", 28, "01655556666",208, "Ward Boy", 15000);
+        Staff s9 = new Staff("Nusrat Jahan", 28, "01655556666",209, "Ward Boy", 15000);
 
         System.out.println(" HOSPITAL DATABASE \n");
         Hospital hospital = new Hospital("Dhanmondi");
@@ -40,17 +40,29 @@ public class Main {
         hospital.addDoctorInfo(doc2);
         hospital.addDoctorInfo(doc3);
         hospital.addDoctorInfo(doc4);
+        hospital.addDoctorInfo(doc5);
+        hospital.addDoctorInfo(doc6);
+        hospital.addDoctorInfo(doc7);
+        hospital.addDoctorInfo(doc8);
 
         hospital.addPatientInfo(patient1);
         hospital.addPatientInfo(patient2);
         hospital.addPatientInfo(patient3);
         hospital.addPatientInfo(patient4);
+        hospital.addPatientInfo(patient5);
+        hospital.addPatientInfo(patient6);
+        hospital.addPatientInfo(patient7);
+        hospital.addPatientInfo(patient8);
 
         hospital.addStaffInfo(s1);
         hospital.addStaffInfo(s2);
         hospital.addStaffInfo(s3);
         hospital.addStaffInfo(s4);
         hospital.addStaffInfo(s5);
+        hospital.addStaffInfo(s6);
+        hospital.addStaffInfo(s7);
+        hospital.addStaffInfo(s8);
+        hospital.addStaffInfo(s9);
 
 
         while (true) {
