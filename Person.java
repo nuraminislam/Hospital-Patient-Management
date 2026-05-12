@@ -1,5 +1,4 @@
 public abstract class Person {
-    private String role;
     private String personName;
     private int age;
     private String contactNumber;
