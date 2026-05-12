@@ -4,9 +4,9 @@ public class Patient extends Person {
     private String disease;
     private Doctor assignedDoctor;
 
-    public Patient(String hospitalName, String branch, String personName, int age, String contactNumber, int patientId, String bloodGroup, String disease, Doctor assignedDoctor)
+    public Patient(String personName, int age, String contactNumber, int patientId, String bloodGroup, String disease, Doctor assignedDoctor)
     {
-        super(hospitalName, branch, personName, age, contactNumber);
+        super(personName, age, contactNumber);
         this.patientId = patientId;
         this.bloodGroup = bloodGroup;
         this.disease = disease;

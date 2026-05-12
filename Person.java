@@ -1,11 +1,11 @@
-public abstract class Person extends Hospital {
+public abstract class Person {
+    private String role;
     private String personName;
     private int age;
     private String contactNumber;
 
-    public Person(String name, String branch, String personName, int age, String contactNumber)
+    public Person(String personName, int age, String contactNumber)
     {
-        super(name, branch);
         this.personName = personName;
         this.age = age;
         this.contactNumber = contactNumber;

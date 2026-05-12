@@ -1,9 +1,12 @@
 public class Hospital {
-    public String hospitalName;
-    public String hospitalBranch;
+    private String hospitalName = "SouthEast Medical Hospital";
+    private String hospitalBranch;
 
-    public Hospital(String name, String branch) {
-        this.hospitalBranch = name;
+    public Hospital(String branch) {
         this.hospitalBranch = branch;
+    }
+
+    public void inputPesonInfo() {
+
     }
 }
