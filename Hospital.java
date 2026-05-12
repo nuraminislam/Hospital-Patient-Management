@@ -77,4 +77,49 @@ public class Hospital {
         }
     }
 
+    public void searchDoctorById(int id) {
+
+        for (int i = 0; i < doctorCount; i++) {
+
+            if (doctors[i].getDoctorId() == id) {
+
+                System.out.println("Doctor Found:\n");
+                doctors[i].displayDetails();
+                return;
+            }
+        }
+
+        System.out.println("Doctor not found.");
+    }
+
+    public void searchPatientById(int id) {
+
+        for (int i = 0; i < patientCount; i++) {
+
+            if (patients[i].getPatientId() == id) {
+
+                System.out.println("Patient Found:\n");
+                patients[i].displayDetails();
+                return;
+            }
+        }
+
+        System.out.println("Patient not found.");
+    }
+
+    public void searchStaffById(int id) {
+
+        for (int i = 0; i < staffCount; i++) {
+
+            if (staffs[i].getStaffId() == id) {
+
+                System.out.println("Staff Found:\n");
+                staffs[i].displayDetails();
+                return;
+            }
+        }
+
+        System.out.println("Staff not found.");
+    }
+
 }
