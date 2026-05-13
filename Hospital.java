@@ -48,7 +48,7 @@ public class Hospital {
     }
 
     public void displayDoctor() {
-        System.out.println("Showing doctors info of " + this.hospitalBranch + " :"+ '\n');
+        System.out.println("Showing doctors info of " + this.hospitalName + " of " +this.hospitalBranch + " branch :"+ '\n');
         for(Doctor doc : doctors) {
             if(doc != null) {
                 doc.displayDetails();
@@ -58,7 +58,7 @@ public class Hospital {
     }
 
     public void displayPatient() {
-        System.out.println("Showing patients info of " + this.hospitalBranch + " :"+ '\n');
+        System.out.println("Showing patients info of "+ this.hospitalName + " of " +this.hospitalBranch + " branch :"+ '\n');
         for(Patient patient : patients) {
             if(patient != null) {
                 patient.displayDetails();
@@ -68,7 +68,7 @@ public class Hospital {
     }
 
     public void displayStaff() {
-        System.out.println("Showing staffs info of " + this.hospitalBranch + " :"+ '\n');
+        System.out.println("Showing staffs info of " + this.hospitalName + " of " +this.hospitalBranch + " branch :"+ '\n');
         for(Staff staff : staffs) {
             if(staff != null) {
                 staff.displayDetails();
