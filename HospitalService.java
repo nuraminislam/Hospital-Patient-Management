@@ -51,10 +51,11 @@ public class HospitalService {
                 }
 
             }
+            System.out.println("successfully read data from " + fileName);
             fileReader.close();
         } catch (Exception e) {
             System.out.println("Error reading data from " + fileName);
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 }

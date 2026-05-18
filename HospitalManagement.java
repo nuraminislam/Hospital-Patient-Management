@@ -23,6 +23,9 @@ public class HospitalManagement {
 
     public void startProgram() {
         hospitalService.readDataFromText("doctorInfo.txt");
+        hospitalService.readDataFromText("patientInfo.txt");
+        hospitalService.readDataFromText("staffInfo.txt");
+
         System.out.println("Welocme to " + hospital.getHospitalName() + " Management System.....");
     }
 

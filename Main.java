@@ -33,10 +33,10 @@ public class Main {
 //        Staff s3 = new Staff("Sadia Islam", 32, "01933334444",203, "Lab Technician", 30000);
 //        Staff s4 = new Staff("Karim Uddin", 40, "01744445555",204, "Pharmacist", 28000);
 //        Staff s5 = new Staff("Meheraj Hossain", 29, "01655556666",205, "Ward Boy", 15000);
-//        Staff s6 = new Staff("Nusrat Jahan", 28, "01655556666",206, "Ward Boy", 15000);
-//        Staff s7 = new Staff("Nusrat Jahan", 28, "01655556666",207, "Ward Boy", 15000);
-//        Staff s8 = new Staff("Nusrat Jahan", 28, "01655556666",208, "Ward Boy", 15000);
-//        Staff s9 = new Staff("Nusrat Jahan", 28, "01655556666",209, "Ward Boy", 15000);
+//        Staff s6 = new Staff("Nusrat Jahan", 28, "01655556666",206, "Nurse", 15000);
+//        Staff s7 = new Staff("Shakib Islam", 28, "01655556666",207, "Ward Boy", 15000);
+//        Staff s8 = new Staff("Nafiz Hasan", 28, "01655556666",208, "Ward Boy", 15000);
+//        Staff s9 = new Staff("Ripa Jahan", 28, "01655556666",209, "Nurse", 15000);
 //
 //        System.out.println(" HOSPITAL DATABASE \n");
 //        Hospital hospital = new Hospital("Dhanmondi");
