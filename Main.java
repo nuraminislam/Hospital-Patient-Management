@@ -15,8 +15,6 @@ public class Main {
         Doctor doc7=new Doctor("Sajid Al Amin",43,"01326548898",507,"Psychiatrist");
         Doctor doc8=new Doctor("Ruhit Al Pantha",46,"01721664598",508,"Surgeon");
 
-        Doctor [] doctors = {doc1,doc2,doc3,doc4,doc5,doc6,doc7, doc8};
-
         Patient patient1 = new Patient( "Rahim Uddin", 45, "01711223344", 1001, "O+", "Dengue Fever", doc1);
         Patient patient2 = new Patient("Karim Hasan", 32, "01822334455", 1002, "A-", "Fractured Arm", doc2);
         Patient patient3 = new Patient( "Fatema Begum", 60, "01933445566", 1003, "B+", "Heart Palpitations", doc3);
@@ -41,13 +39,15 @@ public class Main {
 
         HospitalService hospitalService = new HospitalService(hospital);
 
-        for (Doctor doctor : doctors) {
-            try {
-                hospitalService.addDoctor(doctor);
-            } catch (DuplicateDoctorIdException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        hospitalService.readDataFromText("doctorInfo.txt");
+
+//        for (Doctor doctor : doctors) {
+//            try {
+//                hospitalService.addDoctor(doctor);
+//            } catch (DuplicateDoctorIdException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
 
         hospital.addPatientInfo(patient1);
         hospital.addPatientInfo(patient2);
@@ -85,10 +85,14 @@ public class Main {
             } else if (dice == 3) {
                 hospital.displayStaff();
             } else if(dice == 4) {
-                System.out.println("Enter the doctor id: ");
-                int id = sc.nextInt();
-                Doctor searchedDoctor = hospital.searchDoctorById(id);
-                searchedDoctor.displayDetails();
+                try{
+                    System.out.println("Enter the doctor id: ");
+                    int id = sc.nextInt();
+                    Doctor searchedDoctor = hospital.searchDoctorById(id);
+                    searchedDoctor.displayDetails();
+                } catch (NullPointerException e) {
+                    System.out.println(e.getMessage());
+                }
             }
             else if(dice == 5) {
                 System.out.println("Enter the patient id: ");
