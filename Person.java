@@ -1,17 +1,17 @@
 public abstract class Person {
-    private String name;
+    private String personName;
     private int age;
     private String contactNumber;
 
-    public Person(String name, int age, String contactNumber)
+    public Person(String personName, int age, String contactNumber)
     {
-        this.name = name;
+        this.personName = personName;
         this.age = age;
         this.contactNumber = contactNumber;
     }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getpersonName() { return personName; }
+    public void setpersonName(String personName) { this.personName = personName; }
     public int getAge() { return age; }
     public void setAge(int age)
     {
