@@ -20,6 +20,10 @@ public class Hospital {
         staffs = new Staff[maxSize];
     }
 
+    public String getHospitalName() {
+        return this.hospitalName;
+    }
+
     public void addDoctorInfo(Doctor doc) {
         if(doctorCount < maxSize) {
             doctors[doctorCount] = doc;

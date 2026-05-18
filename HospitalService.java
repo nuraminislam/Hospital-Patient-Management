@@ -40,7 +40,7 @@ public class HospitalService {
                 String specialization = data[4];
                 try {
                     Doctor doctor = new Doctor(name, age, number, id, specialization);
-                    addDoctor(doctor);
+                    hospital.addDoctorInfo(doctor);
 
                 } catch (Exception e) {
 
