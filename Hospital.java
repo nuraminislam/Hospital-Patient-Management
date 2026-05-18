@@ -61,6 +61,11 @@ public class Hospital {
         }
     }
 
+    public void displayIndividualDcotor(Doctor doc) {
+        doc.displayDetails();
+        System.out.println();
+    }
+
     public void displayPatient() {
         System.out.println("Showing patients info of "+ this.hospitalName + " of " +this.hospitalBranch + " branch :"+ '\n');
         for(Patient patient : patients) {

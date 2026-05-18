@@ -9,12 +9,14 @@ public class Main {
         HospitalManagement hospitalManagement = new HospitalManagement("Tejgaon");
 
         hospitalManagement.startProgram();
+        hospitalManagement.Home();
 
-        if (hospitalManagement.logInAdmin()) {
-            System.out.println("Welcome Admin");
-        } else {
-            System.out.println("Invalid username or password");
-        }
+//        if (hospitalManagement.logInAdmin()) {
+//            System.out.println("Welcome Admin");
+//            hospitalManagement.Home();
+//        } else {
+//            System.out.println("Invalid username or password");
+//        }
 
 //        Doctor doc1 = new Doctor("Sultana Kamal", 38, "01855667788", 501, "Medicine");
 //        Doctor doc2 = new Doctor("Aminul Islam", 45, "01722334455", 502, "Orthopedics");
