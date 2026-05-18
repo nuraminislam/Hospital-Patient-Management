@@ -1,8 +1,0 @@
-Sultana Kamal,38,01855667788,501,Medicine
-Aminul Islam,45,01722334455,502,Orthopedics
-Farhana Zaman,42,01999887766,503,Cardiology
-Farzana Alam,38,01777887765,504,Cardiology
-Mahfuzur Rahman,35,01756987643,505,Gynecologist
-Shihab Islam,40,01727546787,506,Dentist
-Sajid Al Amin,43,01326548898,507,Psychiatrist
-Ruhit Al Pantha,46,01721664598,508,Surgeon
