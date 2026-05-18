@@ -77,19 +77,15 @@ public class Hospital {
         }
     }
 
-    public void searchDoctorById(int id) {
+    public Doctor searchDoctorById(int id) {
 
         for (int i = 0; i < doctorCount; i++) {
 
             if (doctors[i].getDoctorId() == id) {
-
-                System.out.println("Doctor Found:\n");
-                doctors[i].displayDetails();
-                return;
+                return  doctors[i];
             }
         }
-
-        System.out.println("Doctor not found.");
+        return null;
     }
 
     public void searchPatientById(int id) {

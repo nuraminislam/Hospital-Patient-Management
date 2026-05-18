@@ -1,3 +1,4 @@
+import javax.print.Doc;
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +14,8 @@ public class Main {
         Doctor doc6=new Doctor("Shihab Islam",40,"01727546787",506,"Dentist");
         Doctor doc7=new Doctor("Sajid Al Amin",43,"01326548898",507,"Psychiatrist");
         Doctor doc8=new Doctor("Ruhit Al Pantha",46,"01721664598",508,"Surgeon");
+
+        Doctor [] doctors = {doc1,doc2,doc3,doc4,doc5,doc6,doc7, doc8};
 
         Patient patient1 = new Patient( "Rahim Uddin", 45, "01711223344", 1001, "O+", "Dengue Fever", doc1);
         Patient patient2 = new Patient("Karim Hasan", 32, "01822334455", 1002, "A-", "Fractured Arm", doc2);
@@ -36,14 +39,15 @@ public class Main {
         System.out.println(" HOSPITAL DATABASE \n");
         Hospital hospital = new Hospital("Dhanmondi");
 
-        hospital.addDoctorInfo(doc1);
-        hospital.addDoctorInfo(doc2);
-        hospital.addDoctorInfo(doc3);
-        hospital.addDoctorInfo(doc4);
-        hospital.addDoctorInfo(doc5);
-        hospital.addDoctorInfo(doc6);
-        hospital.addDoctorInfo(doc7);
-        hospital.addDoctorInfo(doc8);
+        HospitalService hospitalService = new HospitalService(hospital);
+
+        for (Doctor doctor : doctors) {
+            try {
+                hospitalService.addDoctor(doctor);
+            } catch (DuplicateDoctorIdException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         hospital.addPatientInfo(patient1);
         hospital.addPatientInfo(patient2);
@@ -83,7 +87,8 @@ public class Main {
             } else if(dice == 4) {
                 System.out.println("Enter the doctor id: ");
                 int id = sc.nextInt();
-                hospital.searchDoctorById(id);
+                Doctor searchedDoctor = hospital.searchDoctorById(id);
+                searchedDoctor.displayDetails();
             }
             else if(dice == 5) {
                 System.out.println("Enter the patient id: ");
