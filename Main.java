@@ -10,6 +10,12 @@ public class Main {
 
         hospitalManagement.startProgram();
 
+        if (hospitalManagement.logInAdmin()) {
+            System.out.println("Welcome Admin");
+        } else {
+            System.out.println("Invalid username or password");
+        }
+
 //        Doctor doc1 = new Doctor("Sultana Kamal", 38, "01855667788", 501, "Medicine");
 //        Doctor doc2 = new Doctor("Aminul Islam", 45, "01722334455", 502, "Orthopedics");
 //        Doctor doc3 = new Doctor( "Farhana Zaman", 42, "01999887766", 503, "Cardiology");

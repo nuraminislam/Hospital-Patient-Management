@@ -1,6 +1,9 @@
+import java.util.Scanner;
+
 public class HospitalManagement {
     private Hospital hospital;
     private HospitalService hospitalService;
+    Scanner sc = new Scanner(System.in);
 
     public  HospitalManagement(String hospitalBranchName) {
         hospital = new Hospital(hospitalBranchName);
@@ -28,5 +31,17 @@ public class HospitalManagement {
 
         System.out.println("Welocme to " + hospital.getHospitalName() + " Management System.....");
     }
+
+    public boolean logInAdmin() {
+        System.out.println("Login as admin....");
+        System.out.println("Please enter your username:");
+        String username = sc.nextLine();
+        System.out.println("Please enter your password:");
+        String password = sc.nextLine();
+
+        Login login = new Login(username, password);
+        return login.authenticate();
+    }
+
 
 }
