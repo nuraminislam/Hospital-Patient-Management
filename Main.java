@@ -44,7 +44,7 @@ public class Main {
         hospital.addDoctorInfo(doc6);
         hospital.addDoctorInfo(doc7);
         hospital.addDoctorInfo(doc8);
-
+    try{
         hospital.addPatientInfo(patient1);
         hospital.addPatientInfo(patient2);
         hospital.addPatientInfo(patient3);
@@ -53,6 +53,9 @@ public class Main {
         hospital.addPatientInfo(patient6);
         hospital.addPatientInfo(patient7);
         hospital.addPatientInfo(patient8);
+    } catch (InvalidAgeException e) {
+        System.out.println("\n[Exception Caught]: " + e.getMessage());
+    }
 
         hospital.addStaffInfo(s1);
         hospital.addStaffInfo(s2);
@@ -88,7 +91,11 @@ public class Main {
             else if(dice == 5) {
                 System.out.println("Enter the patient id: ");
                 int id = sc.nextInt();
-                hospital.searchPatientById(id);
+                try {
+                    hospital.searchPatientById(id);
+                } catch (PatientNotFoundException e) {
+                    System.out.println("\n[Exception Caught]: " + e.getMessage());
+                }
             } else if(dice == 6) {
                 System.out.println("Enter the staff id: ");
                 int id = sc.nextInt();

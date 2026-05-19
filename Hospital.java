@@ -29,7 +29,12 @@ public class Hospital {
         }
     }
 
-    public void addPatientInfo(Patient patient) {
+    public void addPatientInfo(Patient patient) throws InvalidAgeException {
+        // Business Rule: Checking if the age is valid
+        if(patient.getAge() <= 0 || patient.getAge() > 120) {
+            throw new InvalidAgeException("Validation Error: Invalid age (" + patient.getAge() + ") for patient " + patient.getpersonName());
+        }
+
         if(patientCount < maxSize) {
             patients[patientCount] = patient;
             patientCount++;
@@ -92,19 +97,18 @@ public class Hospital {
         System.out.println("Doctor not found.");
     }
 
-    public void searchPatientById(int id) {
+    public void searchPatientById(int id) throws PatientNotFoundException {
 
         for (int i = 0; i < patientCount; i++) {
-
             if (patients[i].getPatientId() == id) {
-
                 System.out.println("Patient Found:\n");
                 patients[i].displayDetails();
                 return;
             }
         }
 
-        System.out.println("Patient not found.");
+        // If the loop finishes and no patient is found, throw an exception
+        throw new PatientNotFoundException("Database Error: Patient with ID " + id + " not found!");
     }
 
     public void searchStaffById(int id) {
