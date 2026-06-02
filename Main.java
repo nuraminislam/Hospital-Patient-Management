@@ -1,15 +1,31 @@
 import javax.print.Doc;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.in);
-
-        HospitalManagement hospitalManagement = new HospitalManagement("Tejgaon");
-
-        hospitalManagement.startProgram();
-        hospitalManagement.Home();
+        HospitalLoginPage hospitalLoginPage = new HospitalLoginPage();
+//        Label label = new Label();
+//        label.setText("Hello World");
+//
+//
+//        JFrame frame = new JFrame();
+//        frame.setTitle("Login Form");
+//        frame.setSize(400, 400);
+//        frame.setLocationRelativeTo(null);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        ImageIcon icon = new ImageIcon("logo.png");
+//        frame.setIconImage(icon.getImage());
+//        frame.setBackground(Color.BLUE);
+//        frame.setVisible(true);
+//        Scanner sc = new Scanner(System.in);
+//
+//        HospitalManagement hospitalManagement = new HospitalManagement("Tejgaon");
+//
+//        hospitalManagement.startProgram();
+//        hospitalManagement.Home();
 
 //        if (hospitalManagement.logInAdmin()) {
 //            System.out.println("Welcome Admin");

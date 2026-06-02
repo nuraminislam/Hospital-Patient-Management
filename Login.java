@@ -14,7 +14,7 @@ public class Login {
     }
 
     public boolean checkUsername() {
-        return username.equals("mahim");
+        return username.equals("admin");
     }
 
     public boolean authenticate() {
