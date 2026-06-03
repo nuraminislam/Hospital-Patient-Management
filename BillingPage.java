@@ -36,6 +36,20 @@ public class BillingPage extends JPanel {
         generateBtn.setFocusPainted(false);
         generateBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+        // Mac UI Fix: ব্যাকগ্রাউন্ড কালার ফিক্স করার জন্য
+        generateBtn.setOpaque(true);
+        generateBtn.setBorderPainted(false);
+
+        // Custom Hover Effect: মাউস নিলে কালার একটু ডার্ক হবে
+        generateBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                generateBtn.setBackground(ACCENT.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                generateBtn.setBackground(ACCENT);
+            }
+        });
+
         topPanel.add(lbl);
         topPanel.add(searchField);
         topPanel.add(generateBtn);
