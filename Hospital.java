@@ -12,7 +12,7 @@ public class Hospital {
     private int patientCount;
     private int staffCount;
 
-    int maxSize = 50;
+    int maxSize = 100;
 
     public Doctor[] getDoctor() {
         return doctors;
