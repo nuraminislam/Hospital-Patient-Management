@@ -138,7 +138,6 @@ public class DoctorPage extends JPanel {
         card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110));
         card.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        // Avatar circle with initials
         JPanel avatar = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);

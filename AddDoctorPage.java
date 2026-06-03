@@ -12,9 +12,8 @@ public class AddDoctorPage extends JPanel {
     static final Color ACCENT     = new Color(99, 102, 241);
 
     private HospitalService hospitalService;
-    static final String DOCTOR_FILE = "C:\\Users\\pc\\Downloads\\Hospital-Patient-Management\\doctorInfo.txt";
+    static final String DOCTOR_FILE = "doctorInfo.txt";
 
-    // Input fields
     private JTextField nameField, ageField, contactField, idField, specField;
     private JLabel msgLabel;
 
@@ -24,14 +23,12 @@ public class AddDoctorPage extends JPanel {
         setBackground(BG_COLOR);
         setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
 
-        // Title
         JLabel title = new JLabel("👨‍⚕️  Add New Doctor");
         title.setFont(new Font("Segoe UI", Font.BOLD, 22));
         title.setForeground(TEXT_DARK);
         title.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         add(title, BorderLayout.NORTH);
 
-        // Card
         JPanel card = new JPanel(new GridBagLayout());
         card.setBackground(CARD_COLOR);
         card.setBorder(BorderFactory.createCompoundBorder(
@@ -44,7 +41,6 @@ public class AddDoctorPage extends JPanel {
         gbc.insets = new Insets(8, 8, 8, 8);
         gbc.weightx = 1;
 
-        // Row helper
         int row = 0;
 
         nameField    = addRow(card, gbc, row++, "Full Name",       "e.g. John Smith");
@@ -53,14 +49,12 @@ public class AddDoctorPage extends JPanel {
         contactField = addRow(card, gbc, row++, "Contact Number",  "e.g. 01700000000");
         specField    = addRow(card, gbc, row++, "Specialization",  "e.g. Cardiology");
 
-        // Message
         msgLabel = new JLabel("", SwingConstants.CENTER);
         msgLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         gbc.gridx = 0; gbc.gridy = row; gbc.gridwidth = 2;
         gbc.insets = new Insets(4, 8, 4, 8);
         card.add(msgLabel, gbc);
 
-        // Submit button
         row++;
         JButton submitBtn = new JButton("Add Doctor");
         submitBtn.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -76,7 +70,6 @@ public class AddDoctorPage extends JPanel {
 
         submitBtn.addActionListener(e -> submitDoctor());
 
-        // Wrap card in scroll
         JScrollPane scroll = new JScrollPane(card);
         scroll.setBorder(null);
         scroll.getViewport().setBackground(BG_COLOR);
