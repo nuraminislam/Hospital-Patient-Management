@@ -1,3 +1,5 @@
+import javax.print.Doc;
+
 public class Hospital {
     private String hospitalName = "SouthEast Medical Hospital";
     private String hospitalBranch;
@@ -10,7 +12,30 @@ public class Hospital {
     private int patientCount;
     private int staffCount;
 
-    int maxSize = 50;
+    int maxSize = 100;
+
+    public Doctor[] getDoctor() {
+        return doctors;
+    }
+    public int getDoctorCount()
+    {
+        return this.doctorCount;
+    }
+
+    public int getPatientCount()
+    {
+        return this.patientCount;
+    }
+
+    public Patient [] getPatient()
+    {
+        return this.patients;
+    }
+
+    public int getStaffCount()
+    {
+        return this.staffCount;
+    }
 
     public Hospital(String branch) {
         this.hospitalBranch = branch;
@@ -18,6 +43,10 @@ public class Hospital {
         doctors = new Doctor[maxSize];
         patients = new Patient[maxSize];
         staffs = new Staff[maxSize];
+    }
+
+    public String getHospitalName() {
+        return this.hospitalName;
     }
 
     public void addDoctorInfo(Doctor doc) {
@@ -62,6 +91,11 @@ public class Hospital {
         }
     }
 
+    public void displayIndividualDcotor(Doctor doc) {
+        doc.displayDetails();
+        System.out.println();
+    }
+
     public void displayPatient() {
         System.out.println("Showing patients info of "+ this.hospitalName + " of " +this.hospitalBranch + " branch :"+ '\n');
         for(Patient patient : patients) {
@@ -82,33 +116,27 @@ public class Hospital {
         }
     }
 
-    public void searchDoctorById(int id) {
+    public Doctor searchDoctorById(int id) {
 
         for (int i = 0; i < doctorCount; i++) {
 
             if (doctors[i].getDoctorId() == id) {
-
-                System.out.println("Doctor Found:\n");
-                doctors[i].displayDetails();
-                return;
+                return  doctors[i];
             }
         }
-
-        System.out.println("Doctor not found.");
+        return null;
     }
 
-    public void searchPatientById(int id) throws PatientNotFoundException {
+    public Patient searchPatientById(int id) {
 
         for (int i = 0; i < patientCount; i++) {
             if (patients[i].getPatientId() == id) {
-                System.out.println("Patient Found:\n");
-                patients[i].displayDetails();
-                return;
+                return patients[i];
             }
         }
 
-        // If the loop finishes and no patient is found, throw an exception
-        throw new PatientNotFoundException("Database Error: Patient with ID " + id + " not found!");
+        System.out.println("Patient not found.");
+        return null;
     }
 
     public void searchStaffById(int id) {
@@ -126,4 +154,19 @@ public class Hospital {
         System.out.println("Staff not found.");
     }
 
+    public int availableDoctors() {
+        int available = 0;
+
+        for (Doctor doc : doctors) {
+
+            if (doc != null) {
+
+                if (doc.getPatientCount() < 5) {
+                    available++;
+                }
+            }
+        }
+
+        return available;
+    }
 }
