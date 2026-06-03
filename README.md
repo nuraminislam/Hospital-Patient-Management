@@ -23,13 +23,21 @@ This project is an excellent showcase of the four pillars of OOP:
 * **Task 1: Core Class Hierarchy & OOP Implementation**
    * **Completed by:** Nur-amin
    * **Description:** Design and implement the core class hierarchy of the chosen management system, clearly demonstrating all four Object-Oriented Programming (OOP) principles, Encapsulation, Abstraction, Inheritance, and Polymorphism through the structure and behaviour of the classes.
+* **Task 2: Backend Service Layer & Exception Handling**
+    * **Completed by:** MD Nur- Amin Islam, Marium Pramanik, mahim-x446
+    * **Description:** Apply object-oriented principles and exception handling to develop a fully functional backend service layer that manages data storage, validates inputs, and enforces business rules through custom exceptions and structured error handling.
 
 ## 📁 Project Structure
 
 * `Main.java` - The entry point containing sample data and the hospital database array logic.
+* `Hospital.java` - Backend service layer managing data storage (arrays) and business rules validation.
 * `Person.java` - Abstract parent class defining the core human attributes.
 * `Doctor.java` - Child class representing a hospital doctor.
 * `Patient.java` - Child class representing a patient.
+* `Staff.java` - Child class representing a hospital staff member.
+* `InvalidAgeException.java` - Custom exception for handling invalid age validation.
+* `PatientNotFoundException.java` - Custom exception for handling failed search queries in the database.
+
 
 ## 💻 How to Run Locally
 

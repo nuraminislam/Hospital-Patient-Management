@@ -58,7 +58,12 @@ public class Hospital {
         }
     }
 
-    public void addPatientInfo(Patient patient) {
+    public void addPatientInfo(Patient patient) throws InvalidAgeException {
+        // Business Rule: Checking if the age is valid
+        if(patient.getAge() <= 0 || patient.getAge() > 120) {
+            throw new InvalidAgeException("Validation Error: Invalid age (" + patient.getAge() + ") for patient " + patient.getpersonName());
+        }
+
         if(patientCount < maxSize) {
             patients[patientCount] = patient;
             patientCount++;
@@ -125,7 +130,6 @@ public class Hospital {
     public Patient searchPatientById(int id) {
 
         for (int i = 0; i < patientCount; i++) {
-
             if (patients[i].getPatientId() == id) {
                 return patients[i];
             }
