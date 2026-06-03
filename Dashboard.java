@@ -105,7 +105,7 @@ public class Dashboard extends JFrame {
         logoutPanel.setBackground(SIDEBAR_COLOR);
         logoutPanel.setMaximumSize(new Dimension(220, 48));
         logoutPanel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        JLabel logoutLabel = new JLabel("🚪  Logout");
+        JLabel logoutLabel = new JLabel("Logout");
         logoutLabel.setForeground(new Color(255, 100, 100));
         logoutLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         logoutPanel.add(logoutLabel);
