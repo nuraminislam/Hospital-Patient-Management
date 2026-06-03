@@ -4,7 +4,6 @@
 # IntelliJ IDEA workspace files
 .idea/
 *.iml
-*.txt
 
 # Compiled output directories
 out/
