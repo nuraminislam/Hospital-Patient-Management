@@ -210,10 +210,11 @@ public class LoginPage extends JFrame {
         ActionListener loginAction = e -> {
             String user = userField.getText().trim();
             String pass = new String(passField.getPassword());
+            Login login = new Login(user, pass);
             if (user.isEmpty() || pass.isEmpty()) {
                 msgLabel.setForeground(new Color(200, 50, 50));
                 msgLabel.setText("Please fill in all fields.");
-            } else if (user.equals("admin") && pass.equals("1234")) {
+            } else if (login.authenticate()) {
                 // Open Dashboard and close Login
                 dispose();
                 new Dashboard(user, sharedLogo, hospitalService);

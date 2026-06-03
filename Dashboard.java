@@ -155,9 +155,9 @@ public class Dashboard extends JFrame {
         switch (page) {
             case "Dashboard":   contentArea.add(buildDashboardHome()); break;
             case "Doctors":     contentArea.add(new DoctorPage(hospitalService)); break;
-            case "Appointments":contentArea.add(buildSimplePage("📅 Appointments", "View and schedule appointments here.")); break;
-            case "Reports":     contentArea.add(buildSimplePage("📊 Reports", "View hospital reports and analytics here.")); break;
-            case "Settings":    contentArea.add(buildSimplePage("⚙️ Settings", "Configure system settings here.")); break;
+            case "Appointments":contentArea.add(buildSimplePage("Appointments", "View and schedule appointments here.")); break;
+            case "Reports":     contentArea.add(buildSimplePage("Reports", "View hospital reports and analytics here.")); break;
+            case "Settings":    contentArea.add(buildSimplePage("Settings", "Configure system settings here.")); break;
             case "Patients":    contentArea.add(new PatientPage(hospitalService)); break;
         }
         contentArea.revalidate();
