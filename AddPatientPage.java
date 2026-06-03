@@ -12,7 +12,7 @@ public class AddPatientPage extends JPanel {
     static final Color ACCENT     = new Color(99, 102, 241);
 
     private HospitalService hospitalService;
-    static final String PATIENT_FILE = "C:\\Users\\pc\\Downloads\\Hospital-Patient-Management\\patientInfo.txt";
+    static final String PATIENT_FILE = "patientInfo.txt";
 
     private JTextField nameField, ageField, contactField, idField, bloodField, diseaseField;
     private JComboBox<String> doctorCombo;
@@ -141,25 +141,45 @@ public class AddPatientPage extends JPanel {
         }
 
         int age, id;
-        try { age = Integer.parseInt(ageStr); } catch (NumberFormatException e) { showMsg("Age must be a number.", false); return; }
-        try { id  = Integer.parseInt(idStr);  } catch (NumberFormatException e) { showMsg("Patient ID must be a number.", false); return; }
+        try {
+            age = Integer.parseInt(ageStr);
+            id  = Integer.parseInt(idStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Age and Patient ID must be valid numbers!", "Input Error", JOptionPane.ERROR_MESSAGE);
+            showMsg("Invalid number format.", false);
+            return;
+        }
 
         Doctor assignedDoc = null;
         if (selectedDoc > 0) {
             assignedDoc = hospitalService.getHospital().getDoctor()[selectedDoc - 1];
         }
 
-        Patient patient = new Patient(name, age, contact, id, blood, disease, assignedDoc);
-        hospitalService.getHospital().addPatientInfo(patient);
-        hospitalService.savePatientToFile(patient, PATIENT_FILE);
+        try {
+            // Task 3: Integrating Backend and Handling Business Logic Errors
+            Patient patient = new Patient(name, age, contact, id, blood, disease, assignedDoc);
 
-        if (assignedDoc != null) {
-            assignedDoc.appointment(patient);
+            hospitalService.getHospital().addPatientInfo(patient); // This may throw InvalidAgeException
+            hospitalService.savePatientToFile(patient, PATIENT_FILE);
+
+            if (assignedDoc != null) {
+                assignedDoc.appointment(patient);
+            }
+
+            JOptionPane.showMessageDialog(this, "Patient added successfully and saved to database!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            showMsg("✅ Patient added successfully!", true);
+
+            clearFields();
+            loadDoctorsIntoCombo();
+
+        } catch (InvalidAgeException e) {
+            // Task 3: Gracefully catching the custom exception
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Validation Failed", JOptionPane.WARNING_MESSAGE);
+            showMsg("Invalid Age Entered.", false);
+        } catch (Exception e) {
+            // Catch-all for any other file or runtime errors
+            JOptionPane.showMessageDialog(this, "An unexpected error occurred: " + e.getMessage(), "System Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        showMsg("✅ Patient added and saved to file!", true);
-        clearFields();
-        loadDoctorsIntoCombo();
     }
 
     private void showMsg(String msg, boolean success) {
