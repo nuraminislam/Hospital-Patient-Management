@@ -8,8 +8,8 @@ import javax.imageio.*;
 
 public class LoginPage extends JFrame {
 
-    static final String IMAGE_PATH1 = "C:\\Users\\pc\\Downloads\\Hospital-Patient-Management\\logo.jpeg";
-    static final String IMAGE_PATH2 = "C:\\Users\\pc\\Downloads\\Hospital-Patient-Management\\background.jpeg";
+    static final String IMAGE_PATH1 = "logo.jpeg";
+    static final String IMAGE_PATH2 = "background.jpeg";
 
     HospitalService hospitalService;
 
