@@ -1,5 +1,5 @@
 import javax.print.Doc;
-import java.io.File;
+import java.io.*;
 import java.util.Scanner;
 
 public class HospitalService {
@@ -10,19 +10,75 @@ public class HospitalService {
 
     public Hospital getHospital() {this.hospital = hospital;return this.hospital;}
 
-    public void addDoctor(Doctor doctor)
-            throws DuplicateDoctorIdException {
-
+    public void addDoctor(Doctor doctor) throws DuplicateDoctorIdException {
         Doctor searchedDoctor = hospital.searchDoctorById(doctor.getDoctorId());
-
         if (searchedDoctor != null) {
-
-            throw new DuplicateDoctorIdException(
-                    "Doctor ID already exists."
-            );
+            throw new DuplicateDoctorIdException("Doctor ID already exists.");
         }
         hospital.addDoctorInfo(doctor);
         System.out.println("Doctor added successfully.");
+    }
+
+    // ── Helper: write a line safely, ensuring it starts on a new line ──
+    private void appendLine(String fileName, String content) throws IOException {
+        File file = new File(fileName);
+
+        // If file exists and doesn't end with newline, add one first
+        if (file.exists() && file.length() > 0) {
+            RandomAccessFile raf = new RandomAccessFile(file, "r");
+            raf.seek(file.length() - 1);
+            int lastChar = raf.read();
+            raf.close();
+            if (lastChar != '\n') {
+                FileWriter fw = new FileWriter(file, true);
+                fw.write(System.lineSeparator());
+                fw.close();
+            }
+        }
+
+        // Now append the new line
+        FileWriter fw = new FileWriter(file, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write(content);
+        bw.write(System.lineSeparator());
+        bw.close();
+    }
+
+    // ── Save doctor to file ──────────────────────────────────────
+    // Format: name,age,contact,id,specialization
+    public void saveDoctorToFile(Doctor doc, String fileName) {
+        try {
+            String line = doc.getpersonName() + "," +
+                    doc.getAge() + "," +
+                    doc.getContactNumber() + "," +
+                    doc.getDoctorId() + "," +
+                    doc.getSpecialization();
+            appendLine(fileName, line);
+            System.out.println("Doctor saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error saving doctor: " + e.getMessage());
+        }
+    }
+
+    // ── Save patient to file ─────────────────────────────────────
+    // Format: name,age,contact,id,bloodGroup,disease,assignedDoctorId
+    public void savePatientToFile(Patient patient, String fileName) {
+        try {
+            int doctorId = (patient.getAssignedDoctor() != null)
+                    ? patient.getAssignedDoctor().getDoctorId()
+                    : -1;
+            String line = patient.getpersonName() + "," +
+                    patient.getAge() + "," +
+                    patient.getContactNumber() + "," +
+                    patient.getPatientId() + "," +
+                    patient.getBloodGroup() + "," +
+                    patient.getDisease() + "," +
+                    doctorId;
+            appendLine(fileName, line);
+            System.out.println("Patient saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error saving patient: " + e.getMessage());
+        }
     }
 
     public void readDataFromText(String fileName) {

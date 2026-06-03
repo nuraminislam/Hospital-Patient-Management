@@ -12,6 +12,7 @@ public class AddDoctorPage extends JPanel {
     static final Color ACCENT     = new Color(99, 102, 241);
 
     private HospitalService hospitalService;
+    static final String DOCTOR_FILE = "C:\\Users\\pc\\Downloads\\Hospital-Patient-Management\\doctorInfo.txt";
 
     // Input fields
     private JTextField nameField, ageField, contactField, idField, specField;
@@ -120,8 +121,9 @@ public class AddDoctorPage extends JPanel {
 
         Doctor doc = new Doctor(name, age, contact, id, spec);
         hospitalService.getHospital().addDoctorInfo(doc);
+        hospitalService.saveDoctorToFile(doc, DOCTOR_FILE);
 
-        showMsg("✅ Doctor added successfully!", true);
+        showMsg("✅ Doctor added and saved to file!", true);
         clearFields();
     }
 

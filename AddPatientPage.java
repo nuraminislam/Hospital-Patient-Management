@@ -12,6 +12,7 @@ public class AddPatientPage extends JPanel {
     static final Color ACCENT     = new Color(99, 102, 241);
 
     private HospitalService hospitalService;
+    static final String PATIENT_FILE = "C:\\Users\\pc\\Downloads\\Hospital-Patient-Management\\patientInfo.txt";
 
     private JTextField nameField, ageField, contactField, idField, bloodField, diseaseField;
     private JComboBox<String> doctorCombo;
@@ -150,12 +151,13 @@ public class AddPatientPage extends JPanel {
 
         Patient patient = new Patient(name, age, contact, id, blood, disease, assignedDoc);
         hospitalService.getHospital().addPatientInfo(patient);
+        hospitalService.savePatientToFile(patient, PATIENT_FILE);
 
         if (assignedDoc != null) {
             assignedDoc.appointment(patient);
         }
 
-        showMsg("✅ Patient added successfully!", true);
+        showMsg("✅ Patient added and saved to file!", true);
         clearFields();
         loadDoctorsIntoCombo();
     }
