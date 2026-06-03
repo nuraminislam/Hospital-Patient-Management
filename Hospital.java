@@ -1,3 +1,5 @@
+import javax.print.Doc;
+
 public class Hospital {
     private String hospitalName = "SouthEast Medical Hospital";
     private String hospitalBranch;
@@ -11,6 +13,29 @@ public class Hospital {
     private int staffCount;
 
     int maxSize = 50;
+
+    public Doctor[] getDoctor() {
+        return doctors;
+    }
+    public int getDoctorCount()
+    {
+        return this.doctorCount;
+    }
+
+    public int getPatientCount()
+    {
+        return this.patientCount;
+    }
+
+    public Patient [] getPatient()
+    {
+        return this.patients;
+    }
+
+    public int getStaffCount()
+    {
+        return this.staffCount;
+    }
 
     public Hospital(String branch) {
         this.hospitalBranch = branch;
@@ -127,4 +152,19 @@ public class Hospital {
         System.out.println("Staff not found.");
     }
 
+    public int availableDoctors() {
+        int available = 0;
+
+        for (Doctor doc : doctors) {
+
+            if (doc != null) {
+
+                if (doc.getPatientCount() < 5) {
+                    available++;
+                }
+            }
+        }
+
+        return available;
+    }
 }

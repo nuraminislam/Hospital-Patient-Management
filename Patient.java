@@ -3,14 +3,14 @@ public class Patient extends Person {
     private String bloodGroup;
     private String disease;
     private Doctor assignedDoctor;
-
-    public Patient(String personName, int age, String contactNumber, int patientId, String bloodGroup, String disease, Doctor assignedDoctor)
+    Hospital hospital;
+    public Patient(String personName, int age, String contactNumber, int patientId, String bloodGroup, String disease, Doctor assignedDoctorId)
     {
         super(personName, age, contactNumber);
         this.patientId = patientId;
         this.bloodGroup = bloodGroup;
         this.disease = disease;
-        this.assignedDoctor = assignedDoctor;
+        this.assignedDoctor = assignedDoctorId;
     }
 
     public int getPatientId() { return patientId; }
@@ -34,4 +34,6 @@ public class Patient extends Person {
         }
         System.out.println("Contact    : " + getContactNumber());
     }
+
+    public Doctor getDoctor() { return assignedDoctor; }
 }
