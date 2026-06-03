@@ -58,6 +58,7 @@ public class Dashboard extends JFrame {
                 {"Add Patient",     "➕🧑"},
                 {"Patients",        "🧑‍⚕️"},
                 {"Appointments",    "📅"},
+                {"Billing",         "💳"},
                 {"Reports",         "📊"},
                 {"Settings",        "⚙️"}
         };
@@ -151,6 +152,7 @@ public class Dashboard extends JFrame {
             case "Add Patient":  contentArea.add(new AddPatientPage(hospitalService)); break;
             case "Patients":     contentArea.add(new PatientPage(hospitalService)); break;
             case "Appointments": contentArea.add(new AppointmentPage(hospitalService)); break;
+            case "Billing":      contentArea.add(new BillingPage(hospitalService)); break;
             case "Reports":      contentArea.add(buildSimplePage("📊 Reports", "View hospital reports here.")); break;
             case "Settings":     contentArea.add(buildSimplePage("⚙️ Settings", "Configure system settings here.")); break;
         }
