@@ -122,19 +122,17 @@ public class Hospital {
         return null;
     }
 
-    public void searchPatientById(int id) {
+    public Patient searchPatientById(int id) {
 
         for (int i = 0; i < patientCount; i++) {
 
             if (patients[i].getPatientId() == id) {
-
-                System.out.println("Patient Found:\n");
-                patients[i].displayDetails();
-                return;
+                return patients[i];
             }
         }
 
         System.out.println("Patient not found.");
+        return null;
     }
 
     public void searchStaffById(int id) {

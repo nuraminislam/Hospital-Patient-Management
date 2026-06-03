@@ -9,6 +9,7 @@ public class Main {
         hospitalService.readDataFromText("doctorInfo.txt");
         hospitalService.readPatientDataFromText("patientInfo.txt");
         hospitalService.readStaffDataFromText("staffInfo.txt");
-        LoginPage loginPage = new LoginPage(hospitalService);
+        hospitalService.readAppointmentDataFromText("appointmentInfo.txt");
+        SwingUtilities.invokeLater(() -> new LoginPage(hospitalService));
     }
 }

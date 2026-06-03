@@ -148,11 +148,8 @@ public class Dashboard extends JFrame {
             case "Dashboard":    contentArea.add(buildDashboardHome()); break;
             case "Add Doctor":   contentArea.add(new AddDoctorPage(hospitalService)); break;
             case "Doctors":      contentArea.add(new DoctorPage(hospitalService)); break;
-            case "Patients":
-                contentArea.add(
-                        new PatientPage(hospitalService));
-                break;
             case "Add Patient":  contentArea.add(new AddPatientPage(hospitalService)); break;
+            case "Patients":     contentArea.add(new PatientPage(hospitalService)); break;
             case "Appointments": contentArea.add(new AppointmentPage(hospitalService)); break;
             case "Reports":      contentArea.add(buildSimplePage("📊 Reports", "View hospital reports here.")); break;
             case "Settings":     contentArea.add(buildSimplePage("⚙️ Settings", "Configure system settings here.")); break;
@@ -174,7 +171,7 @@ public class Dashboard extends JFrame {
         String[][] stats = {
                 {"Total Patients",    String.valueOf(hospitalService.getHospital().getPatientCount()), "🧑‍⚕️", "#6366f1"},
                 {"Doctors",           String.valueOf(hospitalService.getHospital().getDoctorCount()),  "👨‍⚕️", "#10b981"},
-                {"Appointments",      "—",                                                             "📅",   "#f59e0b"},
+                {"Appointments",      String.valueOf(hospitalService.getAppointments().size()),            "📅",   "#f59e0b"},
                 {"Available Doctors", String.valueOf(hospitalService.getHospital().availableDoctors()),"✅",   "#ef4444"}
         };
 
@@ -190,23 +187,33 @@ public class Dashboard extends JFrame {
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
-        JLabel tableTitle = new JLabel("Recent Admissions");
+        JLabel tableTitle = new JLabel("Recent Patients");
         tableTitle.setFont(new Font("Segoe UI", Font.BOLD, 16));
         tableTitle.setForeground(TEXT_DARK);
         tableCard.add(tableTitle, BorderLayout.NORTH);
 
-        String[] cols = {"Patient Name", "Doctor", "Date", "Status"};
-        Object[][] data = {
-                {"Alice Johnson",  "Dr. Smith",  "2026-06-01", "Admitted"},
-                {"Bob Williams",   "Dr. Khan",   "2026-06-02", "Discharged"},
-                {"Carol Martinez", "Dr. Patel",  "2026-06-02", "Under Treatment"},
-                {"David Lee",      "Dr. Ahmed",  "2026-06-03", "Admitted"},
-                {"Emma Brown",     "Dr. Nguyen", "2026-06-03", "Discharged"},
-        };
-
-        JTable table = new JTable(data, cols) {
+        String[] cols = {"Patient ID", "Patient Name", "Blood Group", "Disease", "Assigned Doctor"};
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(cols, 0) {
             public boolean isCellEditable(int r, int c) { return false; }
         };
+
+        Patient[] patients = hospitalService.getHospital().getPatient();
+        int patCount = hospitalService.getHospital().getPatientCount();
+        for (int i = 0; i < patCount; i++) {
+            Patient p = patients[i];
+            if (p == null) continue;
+            String docName = (p.getAssignedDoctor() != null)
+                    ? "Dr. " + p.getAssignedDoctor().getpersonName() : "Not Assigned";
+            model.addRow(new Object[]{
+                    p.getPatientId(),
+                    p.getpersonName(),
+                    p.getBloodGroup(),
+                    p.getDisease(),
+                    docName
+            });
+        }
+
+        JTable table = new JTable(model);
         table.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         table.setRowHeight(36);
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));

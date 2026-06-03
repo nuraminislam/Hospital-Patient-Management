@@ -1,8 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 public class AppointmentPage extends JPanel {
 
@@ -12,22 +12,16 @@ public class AppointmentPage extends JPanel {
     static final Color TEXT_MUTED = new Color(120, 110, 160);
     static final Color ACCENT     = new Color(99, 102, 241);
 
-    private HospitalService hospitalService;
-    private ArrayList<Appointment> appointments;
-    private int nextAppId = 1;
+    static final String APPOINTMENT_FILE = "appointmentInfo.txt";
 
-    // Form fields
+    private HospitalService hospitalService;
     private JComboBox<String> doctorCombo, patientCombo;
     private JTextField dateField, timeField, reasonField;
     private JLabel msgLabel;
-
-    // Table
-    private JTable table;
-    private javax.swing.table.DefaultTableModel tableModel;
+    private DefaultTableModel tableModel;
 
     public AppointmentPage(HospitalService hospitalService) {
         this.hospitalService = hospitalService;
-        this.appointments = new ArrayList<>();
         setLayout(new BorderLayout(0, 20));
         setBackground(BG_COLOR);
         setBorder(BorderFactory.createEmptyBorder(30, 40, 30, 40));
@@ -38,10 +32,8 @@ public class AppointmentPage extends JPanel {
         title.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         add(title, BorderLayout.NORTH);
 
-        // Split: form top, table bottom
         JPanel centerPanel = new JPanel(new BorderLayout(0, 20));
         centerPanel.setBackground(BG_COLOR);
-
         centerPanel.add(buildForm(), BorderLayout.NORTH);
         centerPanel.add(buildTable(), BorderLayout.CENTER);
 
@@ -49,6 +41,9 @@ public class AppointmentPage extends JPanel {
         scroll.setBorder(null);
         scroll.getViewport().setBackground(BG_COLOR);
         add(scroll, BorderLayout.CENTER);
+
+        // Load existing appointments from hospitalService into table
+        loadExistingAppointments();
     }
 
     private JPanel buildForm() {
@@ -117,7 +112,7 @@ public class AppointmentPage extends JPanel {
         card.add(msgLabel, gbc);
         row++;
 
-        // Submit button
+        // Submit
         JButton submitBtn = new JButton("Book Appointment");
         submitBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
         submitBtn.setBackground(ACCENT);
@@ -129,7 +124,6 @@ public class AppointmentPage extends JPanel {
         gbc.gridx = 0; gbc.gridy = row; gbc.gridwidth = 2;
         gbc.insets = new Insets(12, 8, 8, 8);
         card.add(submitBtn, gbc);
-
         submitBtn.addActionListener(e -> submitAppointment());
 
         return card;
@@ -150,11 +144,11 @@ public class AppointmentPage extends JPanel {
         tableCard.add(tableTitle, BorderLayout.NORTH);
 
         String[] cols = {"ID", "Doctor", "Patient", "Date", "Time", "Reason", "Status"};
-        tableModel = new javax.swing.table.DefaultTableModel(cols, 0) {
+        tableModel = new DefaultTableModel(cols, 0) {
             public boolean isCellEditable(int r, int c) { return false; }
         };
 
-        table = new JTable(tableModel);
+        JTable table = new JTable(tableModel);
         table.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         table.setRowHeight(32);
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
@@ -165,6 +159,20 @@ public class AppointmentPage extends JPanel {
 
         tableCard.add(new JScrollPane(table), BorderLayout.CENTER);
         return tableCard;
+    }
+
+    private void loadExistingAppointments() {
+        for (Appointment appt : hospitalService.getAppointments()) {
+            tableModel.addRow(new Object[]{
+                    appt.getAppointmentId(),
+                    "Dr. " + appt.getDoctor().getpersonName(),
+                    appt.getPatient().getpersonName(),
+                    appt.getDate(),
+                    appt.getTime(),
+                    appt.getReason(),
+                    appt.getStatus()
+            });
+        }
     }
 
     private void loadDoctors() {
@@ -204,10 +212,17 @@ public class AppointmentPage extends JPanel {
         Doctor  doc = hospitalService.getHospital().getDoctor()[docIdx - 1];
         Patient pat = hospitalService.getHospital().getPatient()[patIdx - 1];
 
-        Appointment appt = new Appointment(nextAppId++, doc, pat, date, time, reason);
-        appointments.add(appt);
+        int id = hospitalService.getNextAppointmentId();
+        Appointment appt = new Appointment(id, doc, pat, date, time, reason);
 
-        // Add row to table
+        // Save to hospitalService list
+        hospitalService.addAppointment(appt);
+        hospitalService.incrementAppointmentId();
+
+        // Save to file
+        hospitalService.saveAppointmentToFile(appt, APPOINTMENT_FILE);
+
+        // Add to table
         tableModel.addRow(new Object[]{
                 appt.getAppointmentId(),
                 "Dr. " + doc.getpersonName(),
@@ -216,12 +231,9 @@ public class AppointmentPage extends JPanel {
                 appt.getStatus()
         });
 
-        showMsg("✅ Appointment booked successfully!", true);
+        showMsg("✅ Appointment booked and saved!", true);
         dateField.setText(""); timeField.setText(""); reasonField.setText("");
         doctorCombo.setSelectedIndex(0); patientCombo.setSelectedIndex(0);
-
-        // Refresh combos in case new doctors/patients were added
-        loadDoctors(); loadPatients();
     }
 
     private void showMsg(String msg, boolean success) {

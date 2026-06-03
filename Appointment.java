@@ -2,10 +2,10 @@ public class Appointment {
     private int appointmentId;
     private Doctor doctor;
     private Patient patient;
-    private String date;       // e.g. "2026-06-10"
-    private String time;       // e.g. "10:30 AM"
+    private String date;
+    private String time;
     private String reason;
-    private String status;     // Scheduled, Completed, Cancelled
+    private String status;
 
     public Appointment(int appointmentId, Doctor doctor, Patient patient, String date, String time, String reason) {
         this.appointmentId = appointmentId;
